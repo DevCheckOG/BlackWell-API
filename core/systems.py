@@ -132,7 +132,8 @@ class Parser:
 
 class EmailSystem:
 
-    async def send_email(self, to : str = '', sender : str = 'whistlerappmessenger@gmail.com', message : str = """""") -> bool:
+    # Fix the email system later.
+    async def send_email(self, to : str = '', sender : str = ... , message : str = """""") -> bool:
         """Sending email with an verification code."""
 
         gmail_secret_code : Dict[str, Any] | bool = await get_secret('secret email code')
@@ -142,7 +143,7 @@ class EmailSystem:
         email = EmailMessage()
         email['From'] = sender
         email['To'] = to
-        email['Subject'] = 'Whistler API - Email Verification'
+        email['Subject'] = 'BlackWell - Email Verification'
 
         email.set_content(message)
 
