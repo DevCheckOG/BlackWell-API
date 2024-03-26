@@ -132,26 +132,27 @@ class Parser:
 
 class EmailSystem:
 
-    # Fix the email system later.
-    async def send_email(self, to : str = '', sender : str = ... , message : str = """""") -> bool:
+    async def send_email(self, to : str = '', message : str = """""") -> bool:
         """Sending email with an verification code."""
-
-        gmail_secret_code : Dict[str, Any] | bool = await get_secret('secret email code')
-
-        if not isinstance(gmail_secret_code, dict): return False
-
-        email = EmailMessage()
-        email['From'] = sender
-        email['To'] = to
-        email['Subject'] = 'BlackWell - Email Verification'
-
-        email.set_content(message)
 
         if to.endswith('@gmail.com'):
 
-            smtp = smtplib.SMTP_SSL('smtp.gmail.com')
-            smtp.login(sender, gmail_secret_code['code'])
-            smtp.sendmail(sender, to, email.as_string())
+            gmail_code : Dict[str, Any] | bool = await get_secret('gmail code')
+            gmail_sender : Dict[str, Any] | bool = await get_secret('gmail')
+
+            if not isinstance(gmail_code, dict): return False
+            elif not isinstance(gmail_sender, dict): return False
+
+            email = EmailMessage()
+            email['From'] = gmail_sender['gmail']
+            email['To'] = to
+            email['Subject'] = 'BlackWell - Email Verification'
+
+            email.set_content(message)
+
+            smtp: smtplib.SMTP_SSL = smtplib.SMTP_SSL('smtp.gmail.com')
+            smtp.login(gmail_sender['gmail'], gmail_code['code'])
+            smtp.sendmail(gmail_sender['gmail'], to, email.as_string())
             smtp.quit()
 
             return True

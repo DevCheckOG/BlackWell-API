@@ -2,7 +2,6 @@
 
 # Standard modules.
 
-import dotenv
 import datetime
 import time
 import os
@@ -20,8 +19,6 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from motor.core import AgnosticClient, AgnosticCollection
 
 """Primary Client Database."""
-
-dotenv.load_dotenv()
 
 PRIMARY_CLIENT : AgnosticClient = AsyncIOMotorClient(os.environ['MongoDB'], maxPoolSize= None)
 

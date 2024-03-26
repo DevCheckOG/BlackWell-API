@@ -3,6 +3,7 @@
 import fastapi
 import datetime
 import threading
+import dotenv
 
 from typing import Any, Dict, List, Literal
 from core.systems import Parser, UserManager, IPLimiter
@@ -11,6 +12,8 @@ from core.db.primary import get_token_with_email_and_password, cleaner_history, 
 from core.db.secundary import cleaner_temporal_accounts, cleaner_queue_history
 from core.gateway import GATEWAY_CONEXIONS, Gateway
 from core.constants import Constants
+
+dotenv.load_dotenv()
 
 API : fastapi.FastAPI = fastapi.FastAPI(
 
