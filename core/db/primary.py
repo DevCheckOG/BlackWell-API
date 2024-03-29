@@ -212,24 +212,3 @@ async def add_action_message(to: str, action: Dict[str, Any]) -> bool:
     await ACTIONS.update_one({"_id": token[0]}, {"$push": {"actions": action}})
 
     return True
-
-
-def cleaner_history() -> None:
-    """Cleaner of the History."""
-
-    CLIENT: MongoClient = pymongo.MongoClient(os.environ["MongoDB"], maxPoolSize=None)
-    HISTORY: Collection = CLIENT.get_database("messages").get_collection("history")
-
-    while True:
-
-        time.sleep(60 * 60 * 25)
-
-        if HISTORY.count_documents({}) == 0:
-            continue
-
-        elif (
-            datetime.datetime.now().day == 1 and datetime.datetime.now().month % 2 == 0
-        ):
-
-            HISTORY.delete_many({})
-            continue

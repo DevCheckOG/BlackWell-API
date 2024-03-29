@@ -10,7 +10,6 @@ from core.systems import Parser, UserManager, IPLimiter
 from core.models import *
 from core.db.primary import (
     get_token_with_email_and_password,
-    cleaner_history,
     set_user_profile,
     get_user,
     check_if_user_in_contacts,
@@ -39,7 +38,6 @@ async def startup() -> None:
     threading.Thread(
         target=cleaner_temporal_accounts, name="| Temporal Accounts |"
     ).start()
-    threading.Thread(target=cleaner_history, name="| History |").start()
     threading.Thread(target=cleaner_queue_history, name="| Queue - History |").start()
 
 
