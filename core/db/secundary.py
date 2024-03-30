@@ -25,10 +25,10 @@ from .primary import USERS, get_token_with_username
 SECUNDARY_CLIENT: AgnosticClient = AsyncIOMotorClient(
     os.environ["MongoDB"], maxPoolSize=None
 )
-QUEUE_HISTORY: AgnosticClient = SECUNDARY_CLIENT.get_database(
+QUEUE_HISTORY: AgnosticCollection = SECUNDARY_CLIENT.get_database(
     "messages"
 ).get_collection("queue history")
-TEMP_USERS: AgnosticClient = SECUNDARY_CLIENT.get_database("users").get_collection(
+TEMP_USERS: AgnosticCollection = SECUNDARY_CLIENT.get_database("users").get_collection(
     "users temporal"
 )
 
