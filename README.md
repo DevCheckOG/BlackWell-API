@@ -2,7 +2,7 @@
   <img src= "https://github.com/DevCheckOG/BlackWell-API/blob/master/assets/logo.png" alt= "logo" style= "width: 400px; height: 400px;"> </img>
 </p>
 
-# 🚝 BlackWell API Old - Development repository (Rust 🐍 implementation)
+# 🚝 BlackWell API Old - Development repository (Python 🐍 implementation)
 
 ## 🧩 ¿What is BlackWell API?
 
@@ -11,7 +11,7 @@
 # 🧾 Tech Stack
 
 > [!TIP]
-> **Next you can see a best options for develop your web api in Rust or Python.**
+> **Next you can see a best options for develop your web api in Python.**
 
 ## MongoDB 🍃
 
